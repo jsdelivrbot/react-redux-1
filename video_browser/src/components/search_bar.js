@@ -1,4 +1,13 @@
-<<<<<<< 49e373da1da4b4c593c8a0b69bc00238d85f743f
+//Example of functional component
+// import React from 'react';
+
+// const SearchBar = () => {
+// 	return <input/>;
+// }
+
+// export default SearchBar;
+
+//Example of Class Based Component
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
@@ -23,27 +32,6 @@ class SearchBar extends Component {
 				Value of the input: { this.state.term }
 			</div>
 		);
-=======
-//Example of functional component
-// import React from 'react';
-
-// const SearchBar = () => {
-// 	return <input/>;
-// }
-
-// export default SearchBar;
-
-//Example of Class Based Component
-import React from 'react';
-
-class SearchBar extends React.Component {
-	
-
-	render () {
-		//This will be called by React.component
-		//must return some JSX
-		return <input />;
->>>>>>> Updated search_bar.js
 	}
 }
 
