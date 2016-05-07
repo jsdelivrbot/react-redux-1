@@ -18,20 +18,24 @@ class SearchBar extends Component {
 		super(props);
 
 		//We only refer to state in the constructor of the subcomponent, nowhere else
-		this.state = { term: 'Starting Value' }; 
+		this.state = { term: '' }; 
 	}
 
 	render() {
 		//we only change state using this.setState, never this.state.term = 5;
 		//onChange is always updated first before value is changed
 		return ( 
-			<div>
+			<div className="search-bar">
 				<input 
 				value={this.state.term}
-				onChange={ event => this.setState({ term: event.target.value })} />
-				Value of the input: { this.state.term }
+				onChange={ event => this.onInputChange(event.target.value)} />
 			</div>
 		);
+	}
+
+	onInputChange(term) {
+		this.setState({term});
+		this.props.onSearchTermChange(term);
 	}
 }
 
