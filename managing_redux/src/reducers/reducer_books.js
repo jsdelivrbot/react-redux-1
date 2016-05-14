@@ -3,6 +3,6 @@ export default function () {
 		{title: 'JS: The Good Parts'},
 		{title: 'Harry Potter'},
 		{title: 'The Dark Tower'},
-		{title: 'Elequoent Ruby'}
-	];
+		{title: 'Eloquent Ruby'}
+	]
 }
