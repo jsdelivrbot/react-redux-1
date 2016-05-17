@@ -1,11 +1,37 @@
 import React, { Component } from 'react';
 
 export default class SearchBar extends Component {
+	
+	constructor(props) {
+		super(props);
+
+		this.state = { term: '' };
+
+		//bind this function to this component, without this "this" refers to the wrong context
+		this.onInputChange = this.onInputChange.bind(this);
+	}
+
+	onInputChange(event) {
+		this.setState({ term: event.target.value});
+	}
+
+	onFormSubmit(event) {
+		event.preventDefault();
+
+		//we need to go and fetch weather data
+	}
+
 	render(){
+		//Controlled field is a form element where the value of the element is set by state
 		return(
-			<form className="input-group">
-				<input />
-				<span className="input-group-button">
+			<form onSubmit={this.onFormSubmit} className="input-group">
+				<input 
+				placeholder="Get a five day forecast in your favourite cities."
+				className="form-control"
+				value={this.state.term}
+				onChange={this.onInputChange}
+				/>
+				<span className="input-group-btn">
 					<button type="submit" className="btn btn-secondary">Submit</button>
 				</span>
 			</form>
