@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
-export default class SearchBar extends Component {
+
+class SearchBar extends Component {
 	
 	constructor(props) {
 		super(props);
@@ -9,6 +13,7 @@ export default class SearchBar extends Component {
 
 		//bind this function to this component, without this "this" refers to the wrong context
 		this.onInputChange = this.onInputChange.bind(this);
+		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	onInputChange(event) {
@@ -19,6 +24,13 @@ export default class SearchBar extends Component {
 		event.preventDefault();
 
 		//we need to go and fetch weather data
+		this.props.fetchWeather(this.state.term);
+		//we need to connect our SearchBar container to redux
+		//And bind the action creator to fetchWeather
+
+		//The field will empty out when the user submits
+		this.setState({term: ''});
+
 	}
 
 	render(){
@@ -39,3 +51,10 @@ export default class SearchBar extends Component {
 	}
 		
 }
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({fetchWeather}, dispatch);
+}
+
+//null means we don't need to have access to React's state
+export default connect(null, mapDispatchToProps)(SearchBar);
