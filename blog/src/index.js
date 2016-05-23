@@ -2,14 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { Router, browserHistory } from 'react-router';
 
-import App from './components/app';
 import reducers from './reducers';
+import routes from './routes';
+
+//browserHistory
+//ex. http://www.stuff.com[/post/5] - tracks the url changes using this method
+
+//hashHistory
+//ex. http://www.stuff.com/[#something/5] - tracks the url changes this way
+
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
-
 ReactDOM.render(
+//We pass off rendering control to our router
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <Router history={browserHistory} routes={routes} />
   </Provider>
   , document.querySelector('.container'));
