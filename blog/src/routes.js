@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
 import PostsIndex from './components/posts_index';
+import PostsNew from './components/posts_new';
 
 //The Route object will find a match between a path and a component
 //The IndexRoute sets what the default component will be when the path is '/'
@@ -10,6 +11,7 @@ import PostsIndex from './components/posts_index';
 export default (
 	<Route path="/" component={App}>
 	    <IndexRoute component={PostsIndex} />
+	    <Route  path='posts/new' component={PostsNew} />
 	</Route>
 );
 
