@@ -21,4 +21,23 @@ describe('CommentBox', () => {
 	it('has a button', () => {
 		expect(component.find('button')).to.exist;
 	});
+
+	describe('entering some text', () => {
+
+		//we can add a beforeEach in this block
+		//if we need to do something more specific 
+		//for these specs
+		beforeEach(() => {
+			component.find('textarea').simulate('change', 'new comment');
+		});
+
+		//group specs that are closely related into a nested describe
+		it('shows text this is entered', () => {
+
+		});
+
+		it('when submitted, clears the input', () => {
+
+		});
+	});
 });
