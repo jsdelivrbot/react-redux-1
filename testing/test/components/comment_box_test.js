@@ -33,11 +33,11 @@ describe('CommentBox', () => {
 
 		//group specs that are closely related into a nested describe
 		it('shows text this is entered', () => {
-
+			expect(component).to.have.value('new comment')
 		});
 
 		it('when submitted, clears the input', () => {
-
+			
 		});
 	});
 });
