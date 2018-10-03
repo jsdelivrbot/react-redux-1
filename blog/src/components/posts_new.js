@@ -1,16 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { createPost } from '../actions/index';
 import { Link } from 'react-router';
 
 class PostsNew extends Component {
+
+
+	//the difference between context and props is that context does not need to be 
+	//deliberately passed from parent to child
+	//how to access data throughout your application without it being passed explicitly to your component
+
+	//Defining an object on the PostsNew class
+	static contextTypes = {
+		//Avoid using context as much as possible, the only instance where you'd use it 
+		//is when accessing the router
+		//React is going to search all parents components until it finds router
+		//In this case Router in index.js
+		router: PropTypes.object
+	}
+
+	onFormSubmit(props) {
+		this.props.createPost(props)
+			.then(() => {
+				//blog post has been created, navigate the user to the index
+				//We navigate by calling this.context.router.push with the 
+				//new path to navigate to.
+				this.context.router.push('/');
+			});
+	}
+
+
 	render(){
 		const { fields: { title, categories, content }, handleSubmit } = this.props;
 
-
 		//if the form is valid handleSubmit will call the action creator this.props.createPost
+		//this.onFormSubmit.bind(this) is binding the forms props the onSubmit
 		return(
-			<form onSubmit={handleSubmit(this.props.createPost)}>
+			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
 				<h3>Create A New Post</h3>
 				
 				<div className={`form-group ${title.touched && title.invalid ? 'has-danger' : ''}`}>
